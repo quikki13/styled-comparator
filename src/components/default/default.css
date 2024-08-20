@@ -3,6 +3,7 @@
   margin: 20px;
   border: 1px solid #dddddd;
   border-collapse: collapse;
+  border-top: 2px solid red;
 }
 
 .table th {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
-import { Default, StyledTable } from './components';
+import { Default, StyledTable, SassTable, ModuledTable } from './components';
 
 function App() {
   const [data, setData] = useState([]);
@@ -24,11 +24,10 @@ function App() {
   }, []);
 
   const buttons = [
-    { key: 'default', name: 'css' },
-    { key: 'styled', name: 'styled-components' },
-    { key: 'modules', name: 'css modules' },
-    { key: 'sass', name: 'sass' },
-    { key: 'less', name: 'less' },
+    { key: 'default', name: 'css', color: 'red' },
+    { key: 'styled', name: 'styled-components', color: 'burlywood' },
+    { key: 'modules', name: 'css modules', color: 'blue' },
+    { key: 'sass', name: 'sass', color: 'yellow' },
   ];
 
   // 1500 comments
@@ -37,6 +36,8 @@ function App() {
   const tablesMap = {
     default: <Default data={tableData} />,
     styled: <StyledTable data={tableData} />,
+    sass: <SassTable data={tableData} />,
+    modules: <ModuledTable data={tableData} />,
   };
 
   return (
@@ -46,7 +47,7 @@ function App() {
           <button
             key={btn.key}
             onClick={() => onChange(btn.key)}
-            className={`btn ${btn.key === curButton ? 'active-btn' : ''}`}
+            className={`btn ${btn.key === curButton ? 'active-btn' : ''} ${`btn-${btn.color}`}`}
           >
             {btn.name}
           </button>

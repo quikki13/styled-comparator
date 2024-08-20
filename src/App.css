@@ -26,3 +26,19 @@
   top: 0;
   left: 0;
 }
+
+.active-btn.btn-red {
+  border-top: 4px solid red;
+}
+
+.active-btn.btn-burlywood {
+  border-top: 4px solid burlywood;
+}
+
+.active-btn.btn-yellow {
+  border-top: 4px solid yellow;
+}
+
+.active-btn.btn-blue {
+  border-top: 4px solid blue;
+}

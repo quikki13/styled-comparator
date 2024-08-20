@@ -1,0 +1,1 @@
+export { SassTable } from './SassTable';

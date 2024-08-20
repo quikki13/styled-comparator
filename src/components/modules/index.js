@@ -1,0 +1,1 @@
+export { ModuledTable } from './ModuledTable';
