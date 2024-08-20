@@ -6,6 +6,28 @@
   margin: 1em;
 }
 
+.stat-block {
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+.stat-block > .stat-item {
+  margin-right: 15px;
+  color: gray;
+}
+
+.stat-block > .stat-item:last-child {
+  margin-right: 0px;
+}
+
+.select-item:not(:last-child) {
+  margin-right: 20px;
+}
+
 .btn.active-btn {
   background-color: rgb(83, 140, 48);
   box-shadow: none;
@@ -41,4 +63,9 @@
 
 .active-btn.btn-blue {
   border-top: 4px solid blue;
+}
+
+.loading {
+  margin-top: 20px;
+  color: rgb(106, 133, 135);
 }

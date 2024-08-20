@@ -1,22 +1,14 @@
 import './styles.scss';
 
-export const SassTable = ({ data }) => {
+import { getHeaders, getDataRows } from './helpers';
+
+export const SassTable = ({ data, rows }) => {
   return (
     <table class='table-sass'>
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Content</th>
-        </tr>
-      </thead>
+      <thead>{getHeaders(rows)}</thead>
       <tbody>
         {data.map((el, num) => {
-          return (
-            <tr key={num}>
-              <td>{el.email}</td>
-              <td>{el.body}</td>
-            </tr>
-          );
+          return getDataRows(rows, num, el);
         })}
       </tbody>
     </table>

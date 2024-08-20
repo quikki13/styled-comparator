@@ -8,12 +8,17 @@ export const Table = styled.table`
   border-top: 2px solid burlywood;
 `;
 
+export const THead = styled.thead``;
+
+export const TBody = styled.tbody``;
+
 export const Th = styled.th`
   font-weight: bold;
   padding: 5px;
   background: #efefef;
   border: 1px solid #dddddd;
 `;
+export const Tr = styled.tr``;
 
 export const Td = styled.td`
   border: 1px solid #dddddd;
