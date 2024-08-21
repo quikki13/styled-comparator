@@ -15,6 +15,9 @@ function App() {
   const [commentsIndex, setCommentsIndex] = useState(2);
   const [amountRows, setAmountRows] = useState(2);
 
+  const [isTrashed, setIsTrashed] = useState(false);
+  const [isOptimized, setIsOptimized] = useState(false);
+
   const onChange = (key) => {
     if (isDelayed) {
       setLoading(true);
@@ -46,7 +49,14 @@ function App() {
 
   const tablesMap = {
     default: <Default data={tableData} rows={amountRows} />,
-    styled: <StyledTable data={tableData} rows={amountRows} />,
+    styled: (
+      <StyledTable
+        data={tableData}
+        rows={amountRows}
+        isOptimized={isOptimized}
+        isTrashed={isTrashed}
+      />
+    ),
     sass: <SassTable data={tableData} rows={amountRows} />,
     modules: <ModuledTable data={tableData} rows={amountRows} />,
   };
@@ -56,7 +66,9 @@ function App() {
   function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
     const title = {
       default: 'CSS ->',
-      styled: 'STYLED-COMPONENTS ->',
+      styled: `STYLED-COMPONENTS ${
+        isTrashed ? '(Trashed)' : isOptimized ? '(isOptimized)' : '(Regular)'
+      }->`,
       modules: 'CSS MODULES ->',
       sass: 'SASS ->',
     };
@@ -112,6 +124,36 @@ function App() {
           <input type='checkbox' value={isDelayed} onChange={() => setIsDelayed(!isDelayed)} />
           <span>Обновлять с задержкой</span>
         </label>
+
+        {curButton === 'styled' ? (
+          <>
+            <label>
+              <input
+                type='checkbox'
+                disabled={isOptimized}
+                onInput={() => {
+                  setIsOptimized(false);
+                  setIsTrashed(!isTrashed);
+                }}
+                value={isTrashed}
+              />
+              <span>Засорим таблицу пустышками</span>
+            </label>
+
+            <label>
+              <input
+                type='checkbox'
+                disabled={isTrashed}
+                onInput={() => {
+                  setIsTrashed(false);
+                  setIsOptimized(!isOptimized);
+                }}
+                value={isOptimized}
+              />
+              <span>Оптимизируем таблицу</span>
+            </label>
+          </>
+        ) : null}
       </div>
       <div className='stat-block'>
         <span className='stat-item'>{`Массив данных: ${tableData.length} сообщений`}</span>

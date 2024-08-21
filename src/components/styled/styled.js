@@ -24,3 +24,18 @@ export const Td = styled.td`
   border: 1px solid #dddddd;
   padding: 5px;
 `;
+
+export const TdGrayed = styled.td`
+  border: 1px solid #dddddd;
+  padding: 5px;
+  color: gray;
+`;
+
+export const TdOpt = styled.td`
+  border: 1px solid #dddddd;
+  padding: 5px;
+  
+  ${(props) => (props.isGrayed ? 'color: green;' : null)};
+`;
+
+export const Empty = styled.div``;
