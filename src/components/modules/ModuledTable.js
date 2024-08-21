@@ -4,7 +4,7 @@ import { getHeaders, getDataRows } from './helpers';
 
 export const ModuledTable = ({ data, rows }) => {
   return (
-    <table class={styles.table}>
+    <table className={styles.table}>
       <thead>{getHeaders(rows)}</thead>
       <tbody>
         {data.map((el, num) => {

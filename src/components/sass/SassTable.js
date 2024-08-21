@@ -4,7 +4,7 @@ import { getHeaders, getDataRows } from './helpers';
 
 export const SassTable = ({ data, rows }) => {
   return (
-    <table class='table-sass'>
+    <table className='table-sass'>
       <thead>{getHeaders(rows)}</thead>
       <tbody>
         {data.map((el, num) => {

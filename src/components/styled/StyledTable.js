@@ -4,7 +4,7 @@ import { getHeaders, getDataRows } from './helpers';
 
 export const StyledTable = ({ data, rows }) => {
   return (
-    <Table class='table'>
+    <Table className='table'>
       <THead>{getHeaders(rows)}</THead>
 
       <TBody>

@@ -2,8 +2,8 @@ export const getHeaders = (rows) => {
   if (rows === 2) {
     return (
       <tr>
-        <th>User</th>
-        <th>Content</th>
+        <th key={'heade1-css'}>User</th>
+        <th key={'heade2-css'}>Content</th>
       </tr>
     );
   } else {
@@ -16,7 +16,7 @@ export const getHeaders = (rows) => {
     return (
       <tr>
         {headers.map((el) => (
-          <th>{el}</th>
+          <th key={`${el}-css`}>{el}</th>
         ))}
       </tr>
     );
@@ -26,9 +26,9 @@ export const getHeaders = (rows) => {
 export const getDataRows = (rows, num, el) => {
   if (rows === 2) {
     return (
-      <tr key={num}>
-        <td>{el.email}</td>
-        <td>{el.body}</td>
+      <tr key={`${num}-css`}>
+        <td key={`${num}-1-css`}>{el.email}</td>
+        <td key={`${num}-2-css`}>{el.body}</td>
       </tr>
     );
   } else {
@@ -37,9 +37,9 @@ export const getDataRows = (rows, num, el) => {
     content = content.concat(extraContent);
 
     return (
-      <tr key={num}>
-        {content.map((name) => (
-          <td>{el[name]}</td>
+      <tr key={`${num}-css`}>
+        {content.map((name, id) => (
+          <td key={`${num}-${id}`}>{el[name]}</td>
         ))}
       </tr>
     );

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Profiler } from 'react';
+
 import './App.css';
 
 import { Default, StyledTable, SassTable, ModuledTable } from './components';
@@ -27,9 +28,11 @@ function App() {
   };
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://jsonplaceholder.typicode.com/comments')
       .then((res) => res.json())
-      .then((responseData) => setData(responseData));
+      .then((responseData) => setData(responseData))
+      .finally(() => setLoading(false));
   }, []);
 
   const buttons = [
@@ -48,6 +51,18 @@ function App() {
     modules: <ModuledTable data={tableData} rows={amountRows} />,
   };
 
+  // https://react.dev/reference/react/Profiler
+  // Check performance
+  function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
+    const title = {
+      default: 'CSS ->',
+      styled: 'STYLED-COMPONENTS ->',
+      modules: 'CSS MODULES ->',
+      sass: 'SASS ->',
+    };
+    console.log(`${title[curButton]} commited cahnges by react:  ${commitTime - startTime}ms`);
+  }
+
   return (
     <div className='App'>
       <div className='buttons-block'>
@@ -64,7 +79,7 @@ function App() {
       <h3>Конструктор данных</h3>
       <div>
         <span className='select-item'>
-          <label for='comments'>Массив данных:</label>
+          <label htmlFor='comments'>Массив данных:</label>
           <select
             name='comments'
             id='comments'
@@ -79,7 +94,7 @@ function App() {
         </span>
 
         <span className='select-item'>
-          <label for='rows'>Количество cстолбцов в таблице:</label>
+          <label htmlFor='rows'>Количество cстолбцов в таблице:</label>
           <select
             name='rows'
             id='rows'
@@ -104,7 +119,13 @@ function App() {
           tableData.length * amountRows
         } ячеек`}</span>
       </div>
-      {loading ? <div className='loading'>loading...</div> : tablesMap[curButton]}
+      {loading ? (
+        <div className='loading'>loading...</div>
+      ) : data.length ? (
+        <Profiler id='Table' onRender={onRender}>
+          {tablesMap[curButton]}
+        </Profiler>
+      ) : null}
     </div>
   );
 }

@@ -18,7 +18,7 @@ export const getHeaders = (rows) => {
     return (
       <Tr>
         {headers.map((el) => (
-          <Th>{el}</Th>
+          <Th key={`${el}-styled`}>{el}</Th>
         ))}
       </Tr>
     );
@@ -29,8 +29,8 @@ export const getDataRows = (rows, num, el) => {
   if (rows === 2) {
     return (
       <Tr key={num}>
-        <Td>{el.email}</Td>
-        <Td>{el.body}</Td>
+        <Td key={`${num}-1-styled`}>{el.email}</Td>
+        <Td key={`${num}-2-styled`}>{el.body}</Td>
       </Tr>
     );
   } else {
@@ -39,9 +39,9 @@ export const getDataRows = (rows, num, el) => {
     content = content.concat(extraContent);
 
     return (
-      <Tr key={num}>
-        {content.map((name) => (
-          <Td>{el[name]}</Td>
+      <Tr key={`${num}-styled`}>
+        {content.map((name, id) => (
+          <Td key={`${num}-${id}-styled`}>{el[name]}</Td>
         ))}
       </Tr>
     );
